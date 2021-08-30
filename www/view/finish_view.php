@@ -32,7 +32,7 @@
             <td>
                 <?php print(h($cart['amount'])); ?>個
             </td>
-            <td><?php print(number_format(h($cart['price'] * h($cart['amount'])))); ?>円</td>
+            <td><?php print(number_format(h($cart['price'] * $cart['amount']))); ?>円</td>
           </tr>
           <?php } ?>
         </tbody>
