@@ -19,7 +19,7 @@ $amount = get_post('amount');
 $token = get_post('token');
 if(is_valid_csrf_token($token)!== true){
   set_error('不正な操作が行われました。');
-  redirect_to(ADMIN_URL);
+  redirect_to(CART_URL);
 }
 
 if(update_cart_amount($db, $cart_id, $amount)){
