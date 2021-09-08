@@ -100,6 +100,44 @@ function delete_cart($db, $cart_id){
 
   return execute_query($db, $sql,[$cart_id]);
 }
+//購入履歴
+function get_history($db, $user_id){ 
+  $sql = "
+  SELECT
+    order_histories.order_id,
+  FROM
+    order_histories
+  JOIN
+    order_details  
+  ON
+    order_histories.order_id = order_details.order_id
+  WHERE
+    user_id = ?  
+  ";
+
+  return execute_query($db, $sql,[$user_id]);
+}
+
+//購入明細
+function get_detail($db, $order_id){
+  $sql = "
+  SELECT
+    order_details.price,
+    order_details.amount,
+  FROM
+    order_details
+  JOIN
+    carts 
+  ON
+    order_details.item_id = carts.item_id
+  WHERE
+    order_id = ?  
+
+  ";
+  return fetch_all_query($db, $sql, array($order_id));
+
+}
+
 
 function purchase_carts($db, $carts){
   if(validate_cart_purchase($carts) === false){
