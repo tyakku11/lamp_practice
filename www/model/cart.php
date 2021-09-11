@@ -107,7 +107,7 @@ function insert_history($db, $user_id){
     order_histories(
       user_id
     )
-    VALUES(?)    
+    VALUES(?,NOW())    
   ";
 
   return execute_query($db, $sql,array($user_id));
