@@ -101,13 +101,15 @@ function delete_cart($db, $cart_id){
   return execute_query($db, $sql,[$cart_id]);
 }
 //購入履歴
-function insert_history($db, $user_id){ 
+function insert_history($db, $user_id,$order_id,$total){ 
   $sql = "
   INSERT INTO
     order_histories(
-      user_id
+      user_id,
+      order_id,
+      total  
     )
-    VALUES(?,NOW())    
+    VALUES(?,?,?,NOW())    
   ";
 
   return execute_query($db, $sql,array($user_id));
@@ -118,11 +120,13 @@ function insert_detail($db, $order_id, $item_id, $price, $amount){
   $sql = "
   INSERT INTO
     order_details(
-      user_id,
-      total,
+      order_id,
+      item_id,
+      price,
+      amount
 
   )
-  VALUES(?,?,NOW())  
+  VALUES(?,?,?,?)  
   ";
   return execute_query($db, $sql, array($order_id, $item_id, $price, $amount));
 
