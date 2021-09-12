@@ -118,12 +118,11 @@ function insert_detail($db, $order_id, $item_id, $price, $amount){
   $sql = "
   INSERT INTO
     order_details(
-      order_id,
-      item_id,
-      price,
-      amount
+      user_id,
+      total,
+
   )
-  VALUES(?,?,?,?)  
+  VALUES(?,?,NOW())  
   ";
   return execute_query($db, $sql, array($order_id, $item_id, $price, $amount));
 
