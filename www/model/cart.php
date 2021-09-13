@@ -100,16 +100,16 @@ function delete_cart($db, $cart_id){
 
   return execute_query($db, $sql,[$cart_id]);
 }
-//購入履歴
-function insert_history($db, $user_id,$order_id,$total){ 
+//購入履歴user_id、DATE、totalにデータが入るよう
+function insert_history($db, $user_id, $DATE, $total){ 
   $sql = "
   INSERT INTO
     order_histories(
       user_id,
-      order_id,
+      DATE,
       total  
     )
-    VALUES(?,?,?,NOW())    
+    VALUES(?,NOW(),?)    
   ";
 
   return execute_query($db, $sql,array($user_id));
