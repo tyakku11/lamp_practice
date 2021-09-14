@@ -112,7 +112,7 @@ function insert_history($db, $user_id, $DATE, $total){
     VALUES(?,NOW(),?)    
   ";
 
-  return execute_query($db, $sql,array($user_id));
+  return execute_query($db, $sql,array($user_id,$total));
 }
 
 //購入明細
