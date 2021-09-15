@@ -137,6 +137,10 @@ function purchase_carts($db, $carts){
   if(validate_cart_purchase($carts) === false){
     return false;
   }
+  $db->beginTransaction();
+  try {
+    insert_history($db, $carts[0],['user_id'],['item_id']);
+    $order_id = $db->lastInsertId();
   foreach($carts as $cart){
     if(update_item_stock(
         $db, 
@@ -148,7 +152,13 @@ function purchase_carts($db, $carts){
   }
   
   delete_user_carts($db, $carts[0]['user_id']);
+  $db->commit();
+}catch(PDOException $e){
+  $db->rollback();
+  throw $e;
 }
+}
+
 
 function delete_user_carts($db, $user_id){
   $sql = "
@@ -188,4 +198,3 @@ function validate_cart_purchase($carts){
   }
   return true;
 }
-
