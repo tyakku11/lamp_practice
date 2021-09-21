@@ -14,7 +14,7 @@
 
     <?php include VIEW_PATH. 'templates/messages.php'; ?>
 
-    <!-- 購入明細 -->
+    <!-- 購入履歴 -->
     <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
@@ -24,19 +24,11 @@
         </tr>
       </thead>
       <tbody>
-      <?php foreach($histories as $history){ ?>
         <tr>
           <td><?php print($history['order_id']); ?></td>
           <td><?php print($history['DATE']); ?></td>
           <td><?php print($history['total']); ?></td>
-          <td>
-            <form method="post" action="detail.php">
-              <input type="submit" value="購入明細表示">
-              <input type="hidden" name="order_id" value="<?php print($history['order_id']); ?>">
-            </form>
-          </td>
         </tr>
-      <?php } ?>
       </tbody>
     </table>
 
@@ -56,7 +48,7 @@
           <td><?php print($detail['name']); ?></td>
           <td><?php print($detail['price']); ?></td>
           <td><?php print($detail['amount']); ?></td>
-          <td><?php print($detail['total']); ?></td>
+          <td><?php print($detail['subtotal']); ?></td>
         </tr>
       <?php } ?>
       </tbody>
