@@ -152,6 +152,12 @@ function rank_item($db){
       SUM(amount) AS amount
     FROM 
       items 
+    JOIN 
+      order_details 
+    ON 
+      items.item_id = order_details.items_id
+    GROUP BY 
+      items.item_id
     ORDER BY
       amount DESC
     LIMIT 3
