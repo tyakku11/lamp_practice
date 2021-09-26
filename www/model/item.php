@@ -142,6 +142,29 @@ function delete_item($db, $item_id){
   
   return execute_query($db, $sql,[$item_id]);
 }
+//課題３ランキング機能
+function rank_item($db){
+  $sql = "
+    SELECT
+      items.item_id,
+      items.name,
+      items.price,
+      SUM(amount) AS amount
+    FROM 
+      items 
+    JOIN 
+      order_details 
+    ON 
+      items.item_id = order_details.item_id
+    GROUP BY 
+      items.item_id
+    ORDER BY
+      amount DESC
+    LIMIT 3
+  ";
+
+  return fetch_all_query($db, $sql);
+}
 
 
 // 非DB
