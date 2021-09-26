@@ -155,7 +155,7 @@ function rank_item($db){
     JOIN 
       order_details 
     ON 
-      items.item_id = order_details.items_id
+      items.item_id = order_details.item_id
     GROUP BY 
       items.item_id
     ORDER BY
