@@ -39,6 +39,19 @@
           </div>
         </div>
       <?php } ?>
+      <div>
+          <h1>人気ランキングベスト３</h1>
+            <?php foreach($items as $item){ ?>
+              <ol>
+
+              <p><?php print ($item['name'].';'.$item['price'])?></p>
+              
+
+
+              
+
+              </ol>
+              <?php } ?>  
       </div>
     </div>
   </div>
