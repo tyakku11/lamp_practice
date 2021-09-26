@@ -143,21 +143,21 @@ function delete_item($db, $item_id){
   return execute_query($db, $sql,[$item_id]);
 }
 //課題３ランキング機能
-function rank_item($db,$item_id){
+function rank_item($db){
   $sql = "
     SELECT
       items.item_id,
       items.name,
       items.price,
-      SUM(amount)  
+      SUM(amount) AS amount
     FROM 
       items 
     ORDER BY
-      amount DSC
-    LIMIT　3
+      amount DESC
+    LIMIT 3
   ";
 
-  return execute_query($db, $sql,[$item_id]);
+  return fetch_all_query($db, $sql);
 }
 
 
